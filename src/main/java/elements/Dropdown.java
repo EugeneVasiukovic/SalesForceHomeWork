@@ -10,7 +10,6 @@ public class Dropdown {
     private static final String ACCOUNT_DROPDOWN_XPATH = "//*[contains(text(), '%s')]/ancestor::*[contains(@slot, 'inputField')]//button";
     private static final String ACCOUNT_DROPDOWN_OPTION_XPATH = "//*[@class='slds-combobox_container']//lightning-base-combobox-item//*[contains(@title, '%s')]";
     private static final String CONTACT_DROPDOWN_XPATH = "//label[@class='slds-form-element__label' and text()='%s']";
-//    private static final String CONTACT_DROPDOWN_OPTIONS_XPATH = '//input[@id=\'combobox-input-684\']'
 
     public Dropdown(WebDriver driver, String label) {
         this.driver = driver;
