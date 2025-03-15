@@ -35,5 +35,4 @@ public class NewAccountModalPage extends BasePage{
         new Input(driver, "Phone").writeTextToInput(account.getPhone());
         new Button(driver).clickButton(saveButton);
     }
-
 }

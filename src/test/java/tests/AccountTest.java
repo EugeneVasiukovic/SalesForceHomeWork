@@ -2,7 +2,6 @@ package tests;
 
 import objects.Account;
 import org.assertj.core.api.SoftAssertions;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Random;
@@ -47,7 +46,6 @@ public class AccountTest extends BaseTest {
         softAssertions.assertThat(accountPage.getFieldValueByName("Description","sdsasfasd")).isEqualTo("sdsasfasd");
         softAssertions.assertThat(accountPage.getFieldValueByName("Account Owner","Evgeniu Vasiukovich")).isEqualTo("Evgeniu Vasiukovich");
     }
-
 
     public void resultTest(){
         softAssertions.assertAll();
