@@ -1,14 +1,16 @@
 package tests;
 
 import objects.Contact;
-import org.testng.Assert;
+import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
-import pages.ContactListPage;
+
+
 
 import java.util.Random;
 
 public class ContactTest extends BaseTest{
 
+    SoftAssertions softAssertions = new SoftAssertions();
     Random random = new Random();
 
     @Test
@@ -22,18 +24,18 @@ public class ContactTest extends BaseTest{
         loginPage
                 .openPage(LOGIN_URL)
                 .login(USERNAME,PASSWORD);
-        newContactModalPage.
-                openPage(NEW_CONTACT_MODAL_URL)
+        newContactModalPage
+                .openPage(NEW_CONTACT_MODAL_URL)
                 .createNewContact(contact);
         contactListPage.openPage(CONTACT_LIST_URL);
 
-        Assert.assertEquals(contactListPage.getExistContactName(contact.getContactFirstName()),contact.getContactFirstName());
-        Assert.assertEquals(contactListPage.getExistPhoneNumberByContactName(contact.getContactFirstName()), contact.getPhone());
-
+        softAssertions.assertThat(contactListPage.getExistContactName(contact.getContactFirstName())).isEqualTo(contact.getContactFirstName());
+        softAssertions.assertThat(contactListPage.getExistPhoneNumberByContactName(contact.getContactFirstName())).isEqualTo(contact.getPhone());
     }
 
+
     @Test
-    public void checkAccountCardTest(){
+    public void checkContactCardTest(){
         loginPage
                 .openPage(LOGIN_URL)
                 .login(USERNAME, PASSWORD);
@@ -41,6 +43,13 @@ public class ContactTest extends BaseTest{
                 .openPage(CONTACT_LIST_URL)
                 .clickOnContactName("Contact3 Contact1");
 
-        Assert.assertEquals(contactPage.getFieldValueByName("Contact3 Contact1"), "Contact3 Contact1");
+        softAssertions.assertThat(contactPage.getFieldValueByName("Name","Mr. Contact3 Contact1")).isEqualTo("Mr. Contact3 Contact1");
+        softAssertions.assertThat(contactPage.getFieldValueByName("Account Name","account7")).isEqualTo("account7");
+        softAssertions.assertThat(contactPage.getFieldValueByName("Contact Owner", "Evgeniu Vasiukovich")).isEqualTo("Evgeniu Vasiukovich");
+    }
+
+
+    public void resultTest(){
+        softAssertions.assertAll();
     }
 }

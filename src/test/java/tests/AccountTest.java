@@ -1,6 +1,7 @@
 package tests;
 
 import objects.Account;
+import org.assertj.core.api.SoftAssertions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,6 +10,7 @@ import java.util.Random;
 public class AccountTest extends BaseTest {
 
     Random random = new Random();
+    SoftAssertions softAssertions =new SoftAssertions();
 
     @Test
     public void createAccountTest(){
@@ -26,9 +28,8 @@ public class AccountTest extends BaseTest {
                 .createNewAccount(account);
         accountListPage.openPage(ACCOUNT_LIST_URL);
 
-        Assert.assertEquals(accountListPage.getExistAccountName(account.getAccountName()),account.getAccountName());
-        Assert.assertEquals(accountListPage.getExistPhoneNumberByAccountName(account.getAccountName()), account.getPhone());
-
+        softAssertions.assertThat(accountListPage.getExistAccountName(account.getAccountName())).isEqualTo(account.getAccountName());
+        softAssertions.assertThat(accountListPage.getExistPhoneNumberByAccountName(account.getAccountName())).isEqualTo(account.getPhone());
     }
 
     @Test
@@ -40,7 +41,15 @@ public class AccountTest extends BaseTest {
                 .openPage(ACCOUNT_LIST_URL)
                 .clickOnAccountName("account7");
 
-        Assert.assertEquals(accountPage.getFieldValueByName("account7"), "account7");
+        softAssertions.assertThat(accountPage.getFieldValueByName("Account Name","account7")).isEqualTo( "account7");
+        softAssertions.assertThat(accountPage.getFieldValueByName("Website","Website")).isEqualTo("Website");
+        softAssertions.assertThat(accountPage.getFieldValueByName("Type", "Investor")).isEqualTo("Investor");
+        softAssertions.assertThat(accountPage.getFieldValueByName("Description","sdsasfasd")).isEqualTo("sdsasfasd");
+        softAssertions.assertThat(accountPage.getFieldValueByName("Account Owner","Evgeniu Vasiukovich")).isEqualTo("Evgeniu Vasiukovich");
+    }
 
+
+    public void resultTest(){
+        softAssertions.assertAll();
     }
 }
