@@ -12,7 +12,7 @@ public class ContactTest extends BaseTest{
     Random random = new Random();
 
     @Test
-    public void createContactTest(){
+    public void createContactTest() {
         Contact contact = new Contact();
         contact.setSalutationType("Mr.");
         contact.setContactFirstName("Contact" + random.nextInt(10));
@@ -22,9 +22,8 @@ public class ContactTest extends BaseTest{
         loginPage
                 .openPage(LOGIN_URL)
                 .login(USERNAME,PASSWORD);
-        newContactModalPage
-                .openPage(NEW_CONTACT_MODAL_URL)
-                .createNewContact(contact);
+        newContactModalPage.openPage(NEW_CONTACT_MODAL_URL);
+        newContactModalPage.createNewContact(contact);
         contactListPage.openPage(CONTACT_LIST_URL);
 
         softAssertions.assertThat(contactListPage.getExistContactName(contact.getContactFirstName())).isEqualTo(contact.getContactFirstName());
@@ -32,7 +31,7 @@ public class ContactTest extends BaseTest{
     }
 
     @Test
-    public void checkContactCardTest(){
+    public void checkContactCardTest() {
         loginPage
                 .openPage(LOGIN_URL)
                 .login(USERNAME, PASSWORD);
