@@ -22,8 +22,9 @@ public class ContactTest extends BaseTest{
         loginPage
                 .openPage(LOGIN_URL)
                 .login(USERNAME,PASSWORD);
-        newContactModalPage.openPage(NEW_CONTACT_MODAL_URL);
-        newContactModalPage.createNewContact(contact);
+        newContactModalPage
+                 .openPage(NEW_CONTACT_MODAL_URL)
+                 .createNewContact(contact);
         contactListPage.openPage(CONTACT_LIST_URL);
 
         softAssertions.assertThat(contactListPage.getExistContactName(contact.getContactFirstName())).isEqualTo(contact.getContactFirstName());
