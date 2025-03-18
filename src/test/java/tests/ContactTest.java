@@ -8,9 +8,6 @@ import java.util.Random;
 
 public class ContactTest extends BaseTest{
 
-    SoftAssertions softAssertions = new SoftAssertions();
-    Random random = new Random();
-
     @Test
     public void createContactTest() {
         Contact contact = new Contact();
@@ -43,9 +40,5 @@ public class ContactTest extends BaseTest{
         softAssertions.assertThat(contactPage.getFieldValueByName("Name","Mr. Contact3 Contact1")).isEqualTo("Mr. Contact3 Contact1");
         softAssertions.assertThat(contactPage.getFieldValueByName("Account Name","account7")).isEqualTo("account7");
         softAssertions.assertThat(contactPage.getFieldValueByName("Contact Owner", "Evgeniu Vasiukovich")).isEqualTo("Evgeniu Vasiukovich");
-    }
-
-    public void resultTest(){
-        softAssertions.assertAll();
     }
 }

@@ -8,9 +8,6 @@ import java.util.Random;
 
 public class AccountTest extends BaseTest {
 
-    Random random = new Random();
-    SoftAssertions softAssertions =new SoftAssertions();
-
     @Test
     public void createAccountTest(){
         Account account = new Account();
@@ -45,9 +42,5 @@ public class AccountTest extends BaseTest {
         softAssertions.assertThat(accountPage.getFieldValueByName("Type", "Investor")).isEqualTo("Investor");
         softAssertions.assertThat(accountPage.getFieldValueByName("Description","sdsasfasd")).isEqualTo("sdsasfasd");
         softAssertions.assertThat(accountPage.getFieldValueByName("Account Owner","Evgeniu Vasiukovich")).isEqualTo("Evgeniu Vasiukovich");
-    }
-
-    public void resultTest(){
-        softAssertions.assertAll();
     }
 }

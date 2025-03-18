@@ -2,6 +2,7 @@ package tests;
 
 import constans.IConstans;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,6 +13,7 @@ import pages.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest implements ITestConstants, IConstans {
@@ -25,6 +27,8 @@ public class BaseTest implements ITestConstants, IConstans {
     NewContactModalPage newContactModalPage;
     ContactPage contactPage;
     ContactListPage contactListPage;
+    Random random;
+    SoftAssertions softAssertions;
 
     public void initPages(){
         accountPage = new AccountPage(driver);
@@ -35,6 +39,8 @@ public class BaseTest implements ITestConstants, IConstans {
         newContactModalPage = new NewContactModalPage(driver);
         contactPage = new ContactPage(driver);
         contactListPage = new ContactListPage(driver);
+        softAssertions = new SoftAssertions();
+        random = new Random();
     }
 
     @BeforeMethod
@@ -56,6 +62,7 @@ public class BaseTest implements ITestConstants, IConstans {
 
     @AfterMethod
     public void endTest(){
+        softAssertions.assertAll();
         driver.quit();
     }
 }
