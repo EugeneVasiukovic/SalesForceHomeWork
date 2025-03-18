@@ -1,10 +1,7 @@
 package tests;
 
 import objects.Account;
-import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
-
-import java.util.Random;
 
 public class AccountTest extends BaseTest {
 

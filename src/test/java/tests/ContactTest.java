@@ -1,10 +1,7 @@
 package tests;
 
 import objects.Contact;
-import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
-
-import java.util.Random;
 
 public class ContactTest extends BaseTest{
 
