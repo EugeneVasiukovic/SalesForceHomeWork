@@ -12,7 +12,6 @@ public class ContactPage extends BasePage{
     }
 
     public String getFieldValueByName(String label, String name) {
-        String contactName = driver.findElement(By.xpath(String.format(DATA_BY_FIELD_NAME_XPATH, label, name))).getText();
-        return contactName;
+        return driver.findElement(By.xpath(String.format(DATA_BY_FIELD_NAME_XPATH, label, name))).getText();
     }
 }
